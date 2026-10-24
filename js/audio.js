@@ -106,27 +106,27 @@ window.CosmosAudio = (() => {
     osc('sine', 82.4, drone, t0, at(TB));
     drone.gain.setValueAtTime(0, t0);
     drone.gain.linearRampToValueAtTime(0.22, at(3));
-    drone.gain.linearRampToValueAtTime(0.3, at(8.3));
+    drone.gain.linearRampToValueAtTime(0.3, at(TB - 1.2));
     drone.gain.linearRampToValueAtTime(0.0001, at(TB - 0.35));
 
     // Glassy shimmer when the spark appears.
     const shim = gain(0);
     shim.connect(master);
-    [880, 1318.5, 1760].forEach(f => osc('sine', f, shim, at(3.8), at(TB)));
-    shim.gain.setValueAtTime(0, at(3.8));
-    shim.gain.linearRampToValueAtTime(0.025, at(5.4));
-    shim.gain.linearRampToValueAtTime(0.04, at(8.4));
+    [880, 1318.5, 1760].forEach(f => osc('sine', f, shim, at(4.8), at(TB)));
+    shim.gain.setValueAtTime(0, at(4.8));
+    shim.gain.linearRampToValueAtTime(0.02, at(7.5));
+    shim.gain.linearRampToValueAtTime(0.04, at(TB - 1));
     shim.gain.linearRampToValueAtTime(0, at(TB - 0.4));
 
-    // Tension riser while the hand closes.
+    // Tension riser in the seconds before the bang.
     const rise = gain(0);
     const bp = filter('bandpass', 180, 2.5);
     rise.connect(master);
     bp.connect(rise);
-    noiseSrc(bp, at(6.8), at(TB));
-    bp.frequency.setValueAtTime(180, at(6.8));
+    noiseSrc(bp, at(TB - 3), at(TB));
+    bp.frequency.setValueAtTime(180, at(TB - 3));
     bp.frequency.exponentialRampToValueAtTime(3200, at(TB - 0.4));
-    rise.gain.setValueAtTime(0, at(6.8));
+    rise.gain.setValueAtTime(0, at(TB - 3));
     rise.gain.linearRampToValueAtTime(0.22, at(TB - 0.45));
     rise.gain.linearRampToValueAtTime(0, at(TB - 0.35));
 
@@ -168,6 +168,32 @@ window.CosmosAudio = (() => {
       if (!ensure()) return;
       stopAll();
       pad(ac.currentTime + 0.05);
+    },
+    stop() { stopAll(); },
+    // One keystroke of the typed history text: a dry click plus a tiny
+    // square-wave tick for a mechanical, slightly robotic feel.
+    click() {
+      if (!ac || muted || ac.state !== 'running') return;
+      const t0 = ac.currentTime;
+      const s = ac.createBufferSource();
+      s.buffer = noise;
+      const f = ac.createBiquadFilter();
+      f.type = 'bandpass';
+      f.frequency.value = 2200 + Math.random() * 2600;
+      f.Q.value = 2.5;
+      const g = ac.createGain();
+      g.gain.setValueAtTime(0.32, t0);
+      g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.035);
+      s.connect(f); f.connect(g); g.connect(master);
+      s.start(t0, Math.random() * 2, 0.045);
+      const o = ac.createOscillator();
+      o.type = 'square';
+      o.frequency.value = 1400 + Math.random() * 1200;
+      const og = ac.createGain();
+      og.gain.setValueAtTime(0.025, t0);
+      og.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.014);
+      o.connect(og); og.connect(master);
+      o.start(t0); o.stop(t0 + 0.02);
     },
     blip(pitch = 1) {
       if (!ac || muted) return;

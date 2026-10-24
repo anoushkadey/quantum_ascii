@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Explore the Universe</title>
-  <meta name="description" content="An ASCII animation of the big bang and the birth of the solar system.">
+  <meta name="description" content="An ASCII film of the big bang that ends in a 3D solar system you can explore.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=JetBrains+Mono:wght@300;500&family=UnifrakturMaguntia&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&family=JetBrains+Mono:wght@300;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,24 +19,25 @@
       <span class="begin-line" aria-hidden="true"></span>
       scroll to begin
     </button>
+    <p class="warning">photosensitivity warning: this film contains intense flashing light.</p>
   </section>
 
-  <p id="caption" class="caption" aria-live="polite"></p>
-  <p id="hint" class="hint">touch a world</p>
+  <p id="caption" class="caption" aria-live="polite"><span id="caption-text"></span><span class="cursor" aria-hidden="true"></span></p>
+  <p class="hint"><span class="fine">drag to look around &middot; scroll to zoom &middot; click a world</span><span class="coarse">drag to look around &middot; pinch to zoom &middot; tap a world</span></p>
   <div id="flash" class="flash" aria-hidden="true"></div>
-
-  <div id="reticle" class="reticle" aria-hidden="true"><span id="reticle-label"></span></div>
   <div id="hover" class="hover-label" aria-hidden="true"></div>
 
   <nav class="controls">
+    <button id="replay" class="ctl replay" type="button">&#8634; replay</button>
     <button id="sound" class="ctl sound" type="button" aria-pressed="true">sound <span>on</span></button>
     <button id="skip" class="ctl skip" type="button">skip &rsaquo;</button>
-    <button id="replay" class="ctl replay" type="button">&#8634; witness it again</button>
   </nav>
 
-  <aside id="info" class="info" aria-hidden="true" aria-live="polite">
-    <button class="close" type="button" aria-label="Close">&times;</button>
-    <div class="info-body"></div>
+  <aside id="info" class="info" aria-live="polite">
+    <p id="info-name" class="info-name"></p>
+    <p id="info-age" class="info-line"></p>
+    <p id="info-fact" class="info-line"></p>
+    <button id="info-back" class="info-back" type="button">esc &middot; pull back</button>
   </aside>
 
   <script src="js/data.js"></script>
