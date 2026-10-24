@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Explore the Universe</title>
+  <meta name="description" content="An ASCII animation of the big bang and the birth of the solar system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=JetBrains+Mono:wght@300;500&family=UnifrakturMaguntia&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="sky" aria-label="An ASCII universe"></canvas>
+
+  <section id="intro" aria-label="Start">
+    <p id="question" class="question" data-text="do you want to explore the universe?">do you want to explore the universe?</p>
+    <button id="begin" class="begin" type="button">
+      <span class="begin-line" aria-hidden="true"></span>
+      scroll to begin
+    </button>
+  </section>
+
+  <p id="caption" class="caption" aria-live="polite"></p>
+  <p id="hint" class="hint">touch a world</p>
+  <div id="flash" class="flash" aria-hidden="true"></div>
+
+  <div id="reticle" class="reticle" aria-hidden="true"><span id="reticle-label"></span></div>
+  <div id="hover" class="hover-label" aria-hidden="true"></div>
+
+  <nav class="controls">
+    <button id="sound" class="ctl sound" type="button" aria-pressed="true">sound <span>on</span></button>
+    <button id="skip" class="ctl skip" type="button">skip &rsaquo;</button>
+    <button id="replay" class="ctl replay" type="button">&#8634; witness it again</button>
+  </nav>
+
+  <aside id="info" class="info" aria-hidden="true" aria-live="polite">
+    <button class="close" type="button" aria-label="Close">&times;</button>
+    <div class="info-body"></div>
+  </aside>
+
+  <script src="js/data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
