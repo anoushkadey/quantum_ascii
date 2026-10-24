@@ -195,6 +195,31 @@ window.CosmosAudio = (() => {
       o.connect(og); og.connect(master);
       o.start(t0); o.stop(t0 + 0.02);
     },
+    // A distant impact: a muffled thud with a noisy tail.
+    impact(size = 1) {
+      if (!ac || muted || ac.state !== 'running') return;
+      const t0 = ac.currentTime;
+      const s = ac.createBufferSource();
+      s.buffer = noise;
+      const f = ac.createBiquadFilter();
+      f.type = 'lowpass';
+      f.frequency.setValueAtTime(1800, t0);
+      f.frequency.exponentialRampToValueAtTime(80, t0 + 1.5 + size);
+      const g = ac.createGain();
+      g.gain.setValueAtTime(0.5 * size + 0.15, t0);
+      g.gain.exponentialRampToValueAtTime(0.001, t0 + 1.8 + size * 1.5);
+      s.connect(f); f.connect(g); g.connect(master);
+      s.start(t0, Math.random(), 2 + size * 1.5);
+      const o = ac.createOscillator();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(70, t0);
+      o.frequency.exponentialRampToValueAtTime(30, t0 + 1.2);
+      const og = ac.createGain();
+      og.gain.setValueAtTime(0.6 * size + 0.1, t0);
+      og.gain.exponentialRampToValueAtTime(0.001, t0 + 1.6);
+      o.connect(og); og.connect(master);
+      o.start(t0); o.stop(t0 + 1.7);
+    },
     blip(pitch = 1) {
       if (!ac || muted) return;
       const t0 = ac.currentTime;

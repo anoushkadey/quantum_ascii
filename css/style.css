@@ -287,3 +287,29 @@ body.live .replay { transition-delay: 2s; }
 @media (prefers-reduced-motion: reduce) {
   .question, .begin-line { animation: none; }
 }
+
+/* ------------------------------------------------------------ story */
+.info-fact { opacity: 0; transition: opacity 1.2s ease; }
+.info.told .info-fact { opacity: 1; }
+.info-actions { display: flex; gap: 18px; flex-wrap: wrap; }
+.info-story { display: none; }
+.info.told .info-story { display: inline; }
+
+.labels { position: fixed; inset: 0; pointer-events: none; z-index: 3; }
+.moon-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.56rem;
+  letter-spacing: 0.24em;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.moon-label.on { opacity: 1; }
+
+@media (max-width: 560px) {
+  .caption { bottom: calc(26vh + env(safe-area-inset-bottom, 0px)); }
+}
+body.focused .hint { opacity: 0 !important; transition-delay: 0s !important; }

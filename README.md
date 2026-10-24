@@ -2,12 +2,16 @@
 
 **do you want to explore the universe?**
 
-A front-end ASCII animation. The history of the universe types itself out
-line by line, a single point of light gathers in the dark, and then the big
-bang goes off in a strobing white-out. The debris spirals into a disk that
-forms the Sun and nine worlds (Pluto included). The camera pulls in to a
-close "half universe" view, and from there you can orbit the whole system in
-3D, zoom in, and fly to any world to read about it.
+A front-end ASCII animation, drawn in characters so small they read as
+grain. The history of the universe types itself out while a single point of
+light gathers in the dark. The big bang goes off in a strobing white-out, the
+debris settles into a spiral galaxy, and the camera dives into one of its
+arms, where a cloud of gas collapses into the Sun. Rocks collide and grow into
+nine worlds (Pluto included) with their moons. From there you can orbit the
+whole system in 3D, and fly to any world to watch its history: Theia striking
+the young Earth and forming the Moon, the oceans filling, the asteroid that
+ended the dinosaurs, Mars losing its water to the solar wind, comet
+Shoemaker-Levy 9 hitting Jupiter, the Sun's future as a red giant, and more.
 
 > Photosensitivity warning: the big bang contains intense flashing light.
 > The strobe is reduced when the system's "reduce motion" setting is on.
@@ -32,7 +36,8 @@ python3 -m http.server 8000
 | `skip ›` | jump to the finished solar system |
 | drag | orbit the camera around the system |
 | scroll / pinch | zoom |
-| click a planet or the Sun | fly to it and show its age and a fact |
+| click a planet or the Sun | fly to it and play its history |
+| `↺ its story` | watch that world's history again |
 | ← / → | step through the bodies |
 | Esc / `pull back` | return to the whole system |
 | `↺ replay` or `R` | back to the opening question |
@@ -51,4 +56,7 @@ python3 -m http.server 8000
   correct side, spins, and hides whatever is behind it. Saturn's ring is a
   ray-plane intersection.
 - `js/audio.js` generates the drone, riser, bang, ambient pad and the typing clicks with WebAudio.
-- `js/data.js` holds the facts shown for each body.
+- `js/data.js` holds each body's size, orbit, moons and facts.
+- `js/stories.js` holds each world's history: typed lines, keyframed
+  tracks that change how the world looks (molten, oceans, life, dust, city
+  lights...), and impacts.

@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Explore the Universe</title>
-  <meta name="description" content="An ASCII film of the big bang that ends in a 3D solar system you can explore.">
+  <meta name="description" content="An ASCII film of the big bang and the history of every world in a 3D solar system.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&family=JetBrains+Mono:wght@300;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&family=JetBrains+Mono:wght@300;500;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,6 +26,7 @@
   <p class="hint"><span class="fine">drag to look around &middot; scroll to zoom &middot; click a world</span><span class="coarse">drag to look around &middot; pinch to zoom &middot; tap a world</span></p>
   <div id="flash" class="flash" aria-hidden="true"></div>
   <div id="hover" class="hover-label" aria-hidden="true"></div>
+  <div id="labels" class="labels" aria-hidden="true"></div>
 
   <nav class="controls">
     <button id="replay" class="ctl replay" type="button">&#8634; replay</button>
@@ -36,11 +37,15 @@
   <aside id="info" class="info" aria-live="polite">
     <p id="info-name" class="info-name"></p>
     <p id="info-age" class="info-line"></p>
-    <p id="info-fact" class="info-line"></p>
-    <button id="info-back" class="info-back" type="button">esc &middot; pull back</button>
+    <p id="info-fact" class="info-line info-fact"></p>
+    <div class="info-actions">
+      <button id="info-back" class="info-back" type="button">esc &middot; pull back</button>
+      <button id="info-story" class="info-back info-story" type="button">&#8634; its story</button>
+    </div>
   </aside>
 
   <script src="js/data.js"></script>
+  <script src="js/stories.js"></script>
   <script src="js/audio.js"></script>
   <script src="js/main.js"></script>
 </body>
