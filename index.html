@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Explore the Universe</title>
+  <meta name="description" content="An ASCII film of the big bang and the history of every world in a 3D solar system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&family=JetBrains+Mono:wght@300;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="sky" aria-label="An ASCII universe"></canvas>
+
+  <section id="intro" aria-label="Start">
+    <p id="question" class="question" data-text="do you want to explore the universe?">do you want to explore the universe?</p>
+    <button id="begin" class="begin" type="button">
+      <span class="begin-line" aria-hidden="true"></span>
+      scroll to begin
+    </button>
+    <p class="warning">photosensitivity warning: this film contains intense flashing light.</p>
+  </section>
+
+  <p id="caption" class="caption" aria-live="polite"><span id="caption-text"></span><span class="cursor" aria-hidden="true"></span></p>
+  <p class="hint"><span class="fine">drag to look around &middot; scroll to zoom &middot; click a world</span><span class="coarse">drag to look around &middot; pinch to zoom &middot; tap a world</span></p>
+  <div id="flash" class="flash" aria-hidden="true"></div>
+  <div id="hover" class="hover-label" aria-hidden="true"></div>
+  <div id="labels" class="labels" aria-hidden="true"></div>
+
+  <nav class="controls">
+    <button id="replay" class="ctl replay" type="button">&#8634; replay</button>
+    <button id="sound" class="ctl sound" type="button" aria-pressed="true">sound <span>on</span></button>
+    <button id="skip" class="ctl skip" type="button">skip &rsaquo;</button>
+  </nav>
+
+  <aside id="info" class="info" aria-live="polite">
+    <p id="info-name" class="info-name"></p>
+    <p id="info-age" class="info-line"></p>
+    <p id="info-fact" class="info-line info-fact"></p>
+    <div class="info-actions">
+      <button id="info-back" class="info-back" type="button">esc &middot; pull back</button>
+      <button id="info-story" class="info-back info-story" type="button">&#8634; its story</button>
+    </div>
+  </aside>
+
+  <script src="js/data.js"></script>
+  <script src="js/stories.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
